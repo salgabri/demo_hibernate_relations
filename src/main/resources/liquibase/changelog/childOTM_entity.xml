@@ -14,4 +14,14 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
         </createTable>
         <addAutoIncrement tableName="child_otm" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
     </changeSet>
+
+    <changeSet id="20210214170700" author="salg">
+        <addColumn tableName="child_otm">
+            <column name="parent_id" type="bigint"></column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="child_otm" baseColumnNames="parent_id"
+                                 constraintName="child_otm_parent_id_fk" referencedTableName="parent_otm"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>
