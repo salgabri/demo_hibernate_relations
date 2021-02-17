@@ -42,32 +42,11 @@ public class parentOTMController {
         return parentRepository.save(prova);
     }
 
-    @PostMapping(path = "childOTM")
-    public ChildOTM childOTM() {
-
-        ChildOTM child = new ChildOTM();
-        child.setName("figlio");
-
-        Optional<ParentOTM> parent = parentRepository.findById(4L);
-        child.setParent(parent.get());
-        return childRepository.save(child);
-    }
-
-    @DeleteMapping(path = "child/{id}")
-    public void deleteChild(@PathVariable Long id) {
-        childRepository.deleteById(id);
-    }
-
     @DeleteMapping(path = "parent/{id}")
     public void deleteParent(@PathVariable Long id) {
         parentRepository.deleteById(id);
     }
 
-    @GetMapping(path = "child/{id}")
-    public ChildOTM getChild(@PathVariable Long id) {
-        ChildOTM result = childRepository.findById(id).orElse(null);
-        return result;
-    }
 
     @GetMapping(path = "parent/{id}")
     public ParentOTM getParent(@PathVariable Long id) {
@@ -79,10 +58,5 @@ public class parentOTMController {
         result.removeChild(child);
         //result.addChild(new ChildOTM());
         return parentRepository.save(result);
-    }
-
-    @GetMapping(path = "child/projection/all")
-    public List<ChildOTMProjection> getProjection() {
-        return childRepository.getAllChildProjection();
     }
 }
