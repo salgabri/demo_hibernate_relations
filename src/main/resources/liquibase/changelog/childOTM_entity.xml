@@ -24,4 +24,10 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
                                  constraintName="child_otm_parent_id_fk" referencedTableName="parent_otm"
                                  referencedColumnNames="id"/>
     </changeSet>
+    
+    <changeSet id="20201602235700" author="salgabri">
+        <addColumn tableName="child_otm">
+            <column name="extra_two" type="varchar"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

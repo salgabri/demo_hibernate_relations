@@ -21,6 +21,12 @@ public class ChildOTM {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "extra")
+    private String extra;
+
+    @Column(name = "extra_two")
+    private String extraTwo;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="parent_id")
     @JsonIgnoreProperties("children")

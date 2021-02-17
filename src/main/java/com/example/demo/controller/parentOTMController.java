@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.ChildOTM;
+import com.example.demo.entities.ChildOTMProjection;
 import com.example.demo.entities.ParentOTM;
 import com.example.demo.repo.ChildOTMRepository;
 import com.example.demo.repo.ParentOTMRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +29,16 @@ public class parentOTMController {
         child.setName("prova");
 
         prova.addChild(child);
+
+        child = new ChildOTM();
+        child.setName("prova");
+
+        prova.addChild(child);
+
+        child = new ChildOTM();
+        child.setName("prova");
+
+        prova.addChild(child);
         return parentRepository.save(prova);
     }
 
@@ -36,7 +48,7 @@ public class parentOTMController {
         ChildOTM child = new ChildOTM();
         child.setName("figlio");
 
-        Optional<ParentOTM> parent = parentRepository.findById(5L);
+        Optional<ParentOTM> parent = parentRepository.findById(4L);
         child.setParent(parent.get());
         return childRepository.save(child);
     }
@@ -67,5 +79,10 @@ public class parentOTMController {
         result.removeChild(child);
         //result.addChild(new ChildOTM());
         return parentRepository.save(result);
+    }
+
+    @GetMapping(path = "child/projection/all")
+    public List<ChildOTMProjection> getProjection() {
+        return childRepository.getAllChildProjection();
     }
 }
