@@ -13,4 +13,7 @@ public interface ChildOTMRepository extends CrudRepository<ChildOTM, Long> {
 
     @Query(value = "SELECT new com.example.demo.entities.ChildOTMProjection(c.id,c.name) FROM ChildOTM c")
     List<ChildOTMProjection> getAllChildProjection();
+
+    @Query(value = "SELECT c FROM ChildOTM c LEFT JOIN FETCH c.parent")
+    List<ChildOTM> getAllChildFetchJoinParent();
 }
