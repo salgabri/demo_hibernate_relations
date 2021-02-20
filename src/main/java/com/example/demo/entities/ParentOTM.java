@@ -25,7 +25,7 @@ public class ParentOTM {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("parent")
     private List<ChildOTM> children;
 

@@ -33,7 +33,6 @@ public class childOTMController {
 
         ParentOTM parent = new ParentOTM();
         parent.setName("parent");
-        this.parentRepository.save(parent);
         child.setParent(parent);
         return childRepository.save(child);
     }

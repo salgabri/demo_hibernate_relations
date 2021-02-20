@@ -25,7 +25,6 @@ public class ChildOTMEager {
     private String extraTwo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="parent_id")
     @JsonIgnoreProperties("children")
     private ParentOTM parent;
 }

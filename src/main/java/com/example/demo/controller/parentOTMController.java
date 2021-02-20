@@ -50,13 +50,7 @@ public class parentOTMController {
 
     @GetMapping(path = "parent/{id}")
     public ParentOTM getParent(@PathVariable Long id) {
-        //ParentOTM result = parentRepository.findById(id).orElse(null);
-        ParentOTM result = parentRepository.findByIdFull(id);
-        ChildOTM child = result.getChildren().stream().findFirst().orElse(null);
-        result.removeChild(child);
-        child = result.getChildren().stream().findFirst().orElse(null);
-        result.removeChild(child);
-        //result.addChild(new ChildOTM());
-        return parentRepository.save(result);
+        ParentOTM parent = this.parentRepository.findById(id).orElse(null);
+        return parent;
     }
 }
