@@ -24,7 +24,7 @@ public class ChildOTMEager {
     @Column(name = "extra_two")
     private String extraTwo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonIgnoreProperties("children")
     private ParentOTM parent;
 }

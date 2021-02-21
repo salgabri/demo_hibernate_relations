@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ChildOTMRepository extends CrudRepository<ChildOTM, Long> {
@@ -16,4 +17,8 @@ public interface ChildOTMRepository extends CrudRepository<ChildOTM, Long> {
 
     @Query(value = "SELECT c FROM ChildOTM c LEFT JOIN FETCH c.parent")
     List<ChildOTM> getAllChildFetchJoinParent();
+
+    @Override
+    @Query(value = "SELECT c FROM ChildOTM c WHERE c.id = :id")
+    Optional<ChildOTM> findById(Long id);
 }

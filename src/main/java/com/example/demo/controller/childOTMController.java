@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.ChildOTM;
-import com.example.demo.entities.ChildOTMEager;
 import com.example.demo.entities.ChildOTMProjection;
 import com.example.demo.entities.ParentOTM;
 import com.example.demo.repo.ChildOTMEagerRepository;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class childOTMController {
