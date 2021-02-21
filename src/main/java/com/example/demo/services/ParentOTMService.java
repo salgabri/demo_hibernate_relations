@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
+@Transactional
 @Service
 public class ParentOTMService {
 
@@ -19,7 +21,6 @@ public class ParentOTMService {
     private ChildOTMRepository childOTMRepository;
 
 
-    @Transactional
     public ParentOTM createNewParent() {
         ParentOTM prova = parentRepository.findById(1L).orElse(new ParentOTM());
         ChildOTM child1 = new ChildOTM();
@@ -49,5 +50,17 @@ public class ParentOTMService {
 
         ParentOTM parent = parentRepository.save(prova);
         return parent;
+    }
+
+    public ParentOTM updateChildNames(Long id) {
+        ParentOTM parent = this.parentRepository.findById(id).orElse(null);
+        if(parent != null) {
+            List<ChildOTM> children = parent.getChildren();
+
+            for (ChildOTM child : children) {
+                child.setName("aaaaa");
+            }
+        }
+        return this.parentRepository.save(parent);
     }
 }

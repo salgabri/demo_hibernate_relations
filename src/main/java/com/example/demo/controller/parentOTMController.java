@@ -25,6 +25,11 @@ public class parentOTMController {
         return parentOTMService.createNewParent();
     }
 
+    @PutMapping(path = "parentOTM/child-names/{id}")
+    public ParentOTM updateChildNames(@PathVariable Long id) {
+        return parentOTMService.updateChildNames(id);
+    }
+
     @DeleteMapping(path = "parent/{id}")
     public void deleteParent(@PathVariable Long id) {
         parentRepository.deleteById(id);
