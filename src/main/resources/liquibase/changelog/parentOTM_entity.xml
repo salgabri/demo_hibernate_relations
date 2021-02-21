@@ -14,4 +14,12 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
         </createTable>
         <addAutoIncrement tableName="parent_otm" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
     </changeSet>
+
+    <changeSet id="20210221153000" author="salgabri">
+        <createSequence schemaName="public" startValue="100" incrementBy="1" sequenceName="parent_otm_seq"/>
+    </changeSet>
+
+    <changeSet id="20210221155800" author="salgabri">
+        <alterSequence sequenceName="parent_otm_id_seq" incrementBy="100"></alterSequence>
+    </changeSet>
 </databaseChangeLog>

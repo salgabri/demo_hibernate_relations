@@ -1,11 +1,8 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +15,8 @@ import java.util.List;
 public class ParentOTM {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PARENT_OTM_SEQ")
+    @SequenceGenerator(name = "PARENT_OTM_SEQ", sequenceName = "parent_otm_id_seq", allocationSize = 100)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -41,4 +39,14 @@ public class ParentOTM {
         child.setParent(null);
         children.remove(child);
     }
-}
+
+    public void addChildren(List<ChildOTM> newChildren) {
+        for(ChildOTM child : newChildren) {
+            child.setParent(this);
+        }
+
+        if(this.children == null) {
+            this.children = new ArrayList<>();
+        }
+        children.addAll(newChildren);
+    }}

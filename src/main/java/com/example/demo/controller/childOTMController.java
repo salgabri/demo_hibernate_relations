@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ChildOTMDTO;
 import com.example.demo.entities.ChildOTM;
 import com.example.demo.entities.ChildOTMProjection;
 import com.example.demo.entities.ParentOTM;
+import com.example.demo.mapper.ChildOTMMapper;
 import com.example.demo.repo.ChildOTMEagerRepository;
 import com.example.demo.repo.ChildOTMRepository;
 import com.example.demo.repo.ParentOTMRepository;
@@ -36,9 +38,9 @@ public class childOTMController {
     }
 
     @GetMapping(path = "child/{id}")
-    public ChildOTM getChild(@PathVariable Long id) {
+    public ChildOTMDTO getChild(@PathVariable Long id) {
         ChildOTM result = childRepository.findById(id).orElse(null);
-        return result;
+        return ChildOTMMapper.toDto(result);
     }
 
     @DeleteMapping(path = "child/{id}")

@@ -2,15 +2,15 @@ package com.example.demo.repo;
 
 import com.example.demo.entities.ChildOTM;
 import com.example.demo.entities.ChildOTMProjection;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ChildOTMRepository extends CrudRepository<ChildOTM, Long> {
+public interface ChildOTMRepository extends JpaRepository<ChildOTM, Long> {
 
     @Query(value = "SELECT new com.example.demo.entities.ChildOTMProjection(c.id,c.name) FROM ChildOTM c")
     List<ChildOTMProjection> getAllChildProjection();

@@ -11,7 +11,8 @@ import javax.persistence.*;
 public class ChildOTMEager {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHILD_OTM_SEQ")
+    @SequenceGenerator(name = "CHILD_OTM_SEQ", sequenceName = "child_otm_id_seq", allocationSize = 100)
     @Column(name = "id", nullable = false)
     private Long id;
 

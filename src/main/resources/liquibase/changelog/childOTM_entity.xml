@@ -30,4 +30,12 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
             <column name="extra_two" type="varchar"></column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="20210221153000" author="salgabri">
+        <createSequence schemaName="public" startValue="100" incrementBy="1" sequenceName="child_otm_seq"/>
+    </changeSet>
+
+    <changeSet id="20210221155800" author="salgabri">
+        <alterSequence sequenceName="child_otm_id_seq" incrementBy="100"></alterSequence>
+    </changeSet>
 </databaseChangeLog>
