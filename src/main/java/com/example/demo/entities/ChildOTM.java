@@ -1,11 +1,7 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.ToString;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -28,7 +24,7 @@ public class ChildOTM {
     @Column(name = "extra_two")
     private String extraTwo;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties("children")
     private ParentOTM parent;
 }
