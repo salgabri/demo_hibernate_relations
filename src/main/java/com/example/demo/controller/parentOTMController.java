@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.entities.ChildOTM;
 import com.example.demo.entities.ParentOTM;
 import com.example.demo.repo.ChildOTMRepository;
 import com.example.demo.repo.ParentOTMRepository;
 import com.example.demo.services.ParentOTMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class parentOTMController {
@@ -38,6 +41,10 @@ public class parentOTMController {
 
     @GetMapping(path = "parent/{id}")
     public ParentOTM getParent(@PathVariable Long id) {
-        return this.parentRepository.findById(id).orElse(null);
+        ParentOTM parent = this.parentRepository.findById(id).orElse(null);
+
+        List<ChildOTM> children = parent.getChildren();
+        System.out.println(children.size());
+        return parent;
     }
 }

@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ChildOTMDTO;
 import com.example.demo.entities.ChildOTM;
 import com.example.demo.entities.ChildOTMProjection;
 import com.example.demo.entities.ParentOTM;
-import com.example.demo.mapper.ChildOTMMapper;
 import com.example.demo.repo.ChildOTMEagerRepository;
 import com.example.demo.repo.ChildOTMRepository;
 import com.example.demo.repo.ParentOTMRepository;
@@ -16,6 +14,7 @@ import java.util.List;
 @RestController
 public class childOTMController {
 
+
     @Autowired
     private ParentOTMRepository parentRepository;
 
@@ -26,8 +25,7 @@ public class childOTMController {
     private ChildOTMEagerRepository childEagerRepository;
 
     @PostMapping(path = "childOTM")
-    public ChildOTM childOTM() {
-
+        public ChildOTM childOTM() {
         ChildOTM child = new ChildOTM();
         child.setName("figlio");
 
@@ -38,9 +36,11 @@ public class childOTMController {
     }
 
     @GetMapping(path = "child/{id}")
-    public ChildOTMDTO getChild(@PathVariable Long id) {
+    public ChildOTM getChild(@PathVariable Long id) {
         ChildOTM result = childRepository.findById(id).orElse(null);
-        return ChildOTMMapper.toDto(result);
+
+        System.out.print(result.getParent().getName());
+        return result;
     }
 
     @DeleteMapping(path = "child/{id}")
